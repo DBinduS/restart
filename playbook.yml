@@ -1,14 +1,14 @@
-- hosts: slaves
+- hosts: all
   become: yes
   tasks:
     - name: Pull latest Docker image
-      shell: docker pull yourdockerhubusername/nginx-app:latest
+      shell: docker pull DBinduS/nginx-app:latest
 
     - name: Deploy service on swarm
-      shell: docker service create --name nginx-app --publish 80:80 --replicas 3 yourdockerhubusername/nginx-app:latest
+      shell: docker service create --name nginx-app --publish 80:80 --replicas 3 DBinduS/nginx-app:latest
       ignore_errors: yes
 
     - name: Update service if exists
-      shell: docker service update --image yourdockerhubusername/nginx-app:latest nginx-app
+      shell: docker service update --image DBinduS/nginx-app:latest nginx-app
       ignore_errors: yes
 
